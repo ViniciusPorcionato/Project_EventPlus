@@ -11,6 +11,7 @@ import Header from "../components/Header/Header";
 import Footer from "../components/Footer/Footer";
 import { PrivateRoute } from "./PrivateRoute";
 import EventosAlunoPage from "../pages/EventosAlunoPage/EventosAlunoPage";
+import DetalhesEventoPage from "../pages/DetalhesEventoPage/DetalhesEventoPage";
 
 // Componente Rota
 const Rotas = () => {
@@ -48,7 +49,18 @@ const Rotas = () => {
           }
         />
 
+        <Route
+          path="/detalhes-eventos"
+          element={
+            <PrivateRoute redirectTo="/">
+              <DetalhesEventoPage />
+            </PrivateRoute>
+          }
+        />
+
         <Route element={<LoginPage />} path="/login" />
+        <Route element={<DetalhesEventoPage />} path="/detalhes-eventos" />
+        
         <Route element={<TestePage />} path="/testes" />
       </Routes>
 
