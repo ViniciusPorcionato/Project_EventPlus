@@ -40,6 +40,8 @@ export const institutionResource = '/Instituicao';
  */
 export const loginResource = '/Login';
 
+export const commentaryResource = '/ComentariosEvento'
+
 
 const apiPort = '5000';
 const localApiUri = `http://localhost:${apiPort}/api`;

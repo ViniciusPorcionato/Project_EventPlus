@@ -27,13 +27,25 @@
   overflow: auto;
 }
 
+.event-card--details {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  width: 300px;
+  height: 300px;
+  padding: 25px;
+  border-radius: 5px;
+  overflow: auto;
+  
+}
+
 /* Largura da barra de rolagem */
 .event-card::-webkit-scrollbar {
   width: 0px;
 }
 
 .event-card__title {
-  text-align: center;
+  text-align: start;
   margin-bottom: 20px;
   font-family: Poppins-Medium;
   font-size: 1rem;
@@ -43,6 +55,13 @@
   font-family: Poppins-Regular;
   font-size: 1rem;
   text-align: center;
+  margin-bottom: 25px;
+}
+
+.event-card__description--details {
+  font-family: Poppins-Regular;
+  font-size: 1rem;
+  text-align: start;
   margin-bottom: 25px;
 }
 
@@ -73,5 +92,10 @@
   .event-card {
     width: 220px;
     height: 220px;
+  }
+
+  .event-card--details{
+    width: 400px;
+    height: 400px;
   }
 }

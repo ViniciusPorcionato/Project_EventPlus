@@ -6,15 +6,16 @@ import MainContent from "../../components/MainContent/MainContent";
 import VisionSection from "../../components/VisionSection/VisionSection";
 import ContactSection from "../../components/ContactSection/ContactSection";
 import Title from "../../components/Title/Title";
-import NextEvent from "../../components/NextEvent/NextEvent";
+import {NextEvent, DetailsEvent} from "../../components/NextEvent/NextEvent";
 import Container from "../../components/Container/Container";
 import api from "../../Services/Service";
 import Notification from "../../components/Notification/Notification";
-import { nextEventResource } from "../../Services/Service";
+import { nextEventResource, eventsResource } from "../../Services/Service";
 
 
 const HomePage = () => {
   const [nextEvents, setNextEvents] = useState([]);
+  const [events, setEvents] = useState([]);
   const [notifyUser, setNotifyUser] = useState(); //Componente Notification
 
   // roda somente na inicialização do componente
@@ -22,9 +23,12 @@ const HomePage = () => {
     async function getNextEvents() {
       try {
         const promise = await api.get(nextEventResource);
-        const dados = await promise.data;
+        const promiseEvent = await api.get(eventsResource)
+        const dadosNext = await promise.data;
+        const dadosEvent = await promiseEvent.data;
         // console.log(dados);
-        setNextEvents(dados); //atualiza o state
+        setNextEvents(dadosNext); //atualiza o state
+        setEvents(dadosEvent)
 
       } catch (error) {
         console.log("não trouxe os próximos eventos, verifique lá!");
@@ -62,6 +66,23 @@ const HomePage = () => {
                   description={e.descricao}
                   eventDate={e.dataEvento}
                   idEvent={e.idEvento}
+                />
+              );
+            })}
+          </div>
+
+          <Title titleText={"Eventos"} />
+
+          <div className="events-box">
+            {events.map((e) => {
+              return (
+                <DetailsEvent
+                  key={e.idEvento}
+                  title={e.nomeEvento}
+                  description={e.descricao}
+                  eventDate={e.dataEvento}
+                  idEvent={e.idEvento}
+                  text={'Detalhes'}
                 />
               );
             })}
